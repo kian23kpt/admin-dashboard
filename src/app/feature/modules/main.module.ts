@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import {
     EmployeesTableComponent,
     InformationCardComponent,
@@ -31,6 +33,8 @@ const routes: Routes = [
         MatCardModule,
         MatTableModule,
         MatCheckboxModule,
+        MatButtonModule,
+        MatIconModule,
     ],
 })
 export class MainModule {}

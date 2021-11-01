@@ -1,19 +1,89 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { PeriodicElement } from '@core/models';
 import { SelectionModel } from '@angular/cdk/collections';
+import { Table } from '@core/models';
 
-const ELEMENT_DATA: PeriodicElement[] = [
-    { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-    { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-    { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-    { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-    { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-    { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-    { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-    { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-    { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-    { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+const ELEMENT_DATA: Table[] = [
+    {
+        id: 1,
+        name: 'Hydrogen',
+        totalClocked: 1.0079,
+        totalPaid: 1.0079,
+        totalOvertimePaid: 12,
+        email: 'test@test',
+    },
+    {
+        id: 2,
+        name: 'Helium',
+        totalClocked: 4.0026,
+        totalPaid: 1.0079,
+        totalOvertimePaid: 12,
+        email: 'test@test',
+    },
+    {
+        id: 3,
+        name: 'Lithium',
+        totalClocked: 6.941,
+        totalPaid: 1.0079,
+        totalOvertimePaid: 12,
+        email: 'test@test',
+    },
+    {
+        id: 4,
+        name: 'Beryllium',
+        totalClocked: 9.0122,
+        totalPaid: 1.0079,
+        totalOvertimePaid: 12,
+        email: 'test@test',
+    },
+    {
+        id: 5,
+        name: 'Boron',
+        totalClocked: 10.811,
+        totalPaid: 1.0079,
+        totalOvertimePaid: 12,
+        email: 'test@test',
+    },
+    {
+        id: 6,
+        name: 'Carbon',
+        totalClocked: 12.0107,
+        totalPaid: 1.0079,
+        totalOvertimePaid: 12,
+        email: 'test@test',
+    },
+    {
+        id: 7,
+        name: 'Nitrogen',
+        totalClocked: 14.0067,
+        totalPaid: 1.0079,
+        totalOvertimePaid: 12,
+        email: 'test@test',
+    },
+    {
+        id: 8,
+        name: 'Oxygen',
+        totalClocked: 15.9994,
+        totalPaid: 1.0079,
+        totalOvertimePaid: 12,
+        email: 'test@test',
+    },
+    {
+        id: 9,
+        name: 'Fluorine',
+        totalClocked: 18.9984,
+        totalPaid: 1.0079,
+        totalOvertimePaid: 12,
+        email: 'test@test',
+    },
+    {
+        id: 10,
+        name: 'Neon',
+        totalClocked: 20.1797,
+        totalPaid: 1.0079,
+        totalOvertimePaid: 12,
+        email: 'test@test',
+    },
 ];
 
 @Component({
@@ -24,13 +94,15 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class EmployeesTableComponent {
     displayedColumns: string[] = [
         'select',
-        'position',
+        'id',
         'name',
-        'weight',
-        'symbol',
+        'email',
+        'totalClocked',
+        'totalPaid',
+        'totalOvertimePaid',
     ];
-    dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-    selection = new SelectionModel<PeriodicElement>(true, []);
+    dataSource = new MatTableDataSource<Table>(ELEMENT_DATA);
+    selection = new SelectionModel<Table>(true, []);
 
     /** Whether the number of selected elements matches the total number of rows. */
     isAllSelected() {
@@ -50,12 +122,12 @@ export class EmployeesTableComponent {
     }
 
     /** The label for the checkbox on the passed row */
-    checkboxLabel(row?: PeriodicElement): string {
+    checkboxLabel(row?: Table): string {
         if (!row) {
             return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
         }
         return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
-            row.position + 1
+            row.id + 1
         }`;
     }
 }

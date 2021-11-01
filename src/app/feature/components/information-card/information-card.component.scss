@@ -2,21 +2,23 @@
     mat-card {
         width: 300px;
 
-        .header-image {
-            object-fit: cover;
-        }
-
         mat-card-header {
             align-items: center;
 
             mat-card-title {
                 margin-bottom: 0;
             }
+
+            .material-icons {
+                font-size: 40px;
+            }
         }
 
         mat-card-content {
             p {
                 text-align: end;
+                font-size: 18px;
+                margin-top: 10px;
             }
         }
     }

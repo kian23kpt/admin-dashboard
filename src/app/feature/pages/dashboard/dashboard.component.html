@@ -1,6 +1,6 @@
 <section>
-    <ng-container *ngFor="let x of [1,2,3,4]">
-        <app-information-card></app-information-card>
+    <ng-container *ngFor="let data of generalData">
+        <app-information-card [cardData]="data"></app-information-card>
     </ng-container>
     <app-employees-table></app-employees-table>
 </section>

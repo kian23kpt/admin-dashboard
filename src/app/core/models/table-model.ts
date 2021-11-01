@@ -1,6 +1,8 @@
-export interface PeriodicElement {
+export interface Table {
+    id: number;
     name: string;
-    position: number;
-    weight: number;
-    symbol: string;
+    email: string;
+    totalClocked: number;
+    totalPaid: number;
+    totalOvertimePaid: number;
 }
