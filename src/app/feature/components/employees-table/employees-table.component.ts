@@ -4,7 +4,6 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { TableModel } from '@core/models';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeesEditDialogComponent } from '@feature/components';
-import { TableServiceService } from '@core/services/table-service.service';
 
 @Component({
     selector: 'app-employees-table',
@@ -26,10 +25,7 @@ export class EmployeesTableComponent implements OnChanges {
     dataSource: MatTableDataSource<TableModel>;
     selection = new SelectionModel<TableModel>(true, []);
 
-    constructor(
-        public _dialog: MatDialog,
-        private _tableService: TableServiceService
-    ) {}
+    constructor(public _dialog: MatDialog) {}
 
     ngOnChanges() {
         this.dataSource = new MatTableDataSource<TableModel>(this.elementData);
