@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Table } from '@core/models';
+import { MatDialog } from '@angular/material/dialog';
+import { EmployeesEditDialogComponent } from '@feature/components';
 
 const ELEMENT_DATA: Table[] = [
     {
@@ -104,6 +106,8 @@ export class EmployeesTableComponent {
     dataSource = new MatTableDataSource<Table>(ELEMENT_DATA);
     selection = new SelectionModel<Table>(true, []);
 
+    constructor(public dialog: MatDialog) {}
+
     /** Whether the number of selected elements matches the total number of rows. */
     isAllSelected() {
         const numSelected = this.selection.selected.length;
@@ -129,5 +133,16 @@ export class EmployeesTableComponent {
         return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
             row.id + 1
         }`;
+    }
+
+    openDialog() {
+        const dialogRef = this.dialog.open(EmployeesEditDialogComponent, {
+            width: '70vw',
+            disableClose: true,
+        });
+
+        dialogRef.afterClosed().subscribe((result) => {
+            console.log(`Dialog result: ${result}`);
+        });
     }
 }

@@ -8,9 +8,14 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import {
+    EmployeesEditDialogComponent,
     EmployeesTableComponent,
     InformationCardComponent,
 } from '@feature/components';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
     {
@@ -24,10 +29,12 @@ const routes: Routes = [
         DashboardComponent,
         EmployeesTableComponent,
         InformationCardComponent,
+        EmployeesEditDialogComponent,
     ],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
+        FormsModule,
 
         //Material Modules
         MatCardModule,
@@ -35,6 +42,9 @@ const routes: Routes = [
         MatCheckboxModule,
         MatButtonModule,
         MatIconModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
     ],
 })
 export class MainModule {}
