@@ -54,19 +54,19 @@
     <!-- Total Time Column -->
     <ng-container matColumnDef="totalClocked">
         <th mat-header-cell *matHeaderCellDef>Total Time</th>
-        <td mat-cell *matCellDef="let element">{{ element.totalClocked }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.totalClocked }} hr</td>
     </ng-container>
 
     <!-- Total Paid Column -->
     <ng-container matColumnDef="totalPaid">
         <th mat-header-cell *matHeaderCellDef>Total Paid</th>
-        <td mat-cell *matCellDef="let element">{{ element.totalPaid }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.totalPaid|number }} $</td>
     </ng-container>
 
     <!-- Total Overtime Paid Column -->
     <ng-container matColumnDef="totalOvertimePaid">
         <th mat-header-cell *matHeaderCellDef>Total Overtime Paid</th>
-        <td mat-cell *matCellDef="let element">{{ element.totalOvertimePaid }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.totalOvertimePaid|number }} $</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

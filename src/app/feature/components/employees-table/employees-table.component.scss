@@ -9,12 +9,16 @@
     table {
         width: 100%;
 
-        //.mat-cell, .mat-header-cell {
-        //    text-align: center;
-        //}
+        .mat-cell, .mat-header-cell {
+            text-align: center;
+        }
+
+        .mat-column-email {
+            width: 200px;
+        }
 
         .mat-column-totalOvertimePaid {
-            width: 130px;
+            width: 170px;
         }
     }
 }

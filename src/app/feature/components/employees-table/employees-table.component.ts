@@ -1,99 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
-import { Table } from '@core/models';
+import { TableModel } from '@core/models';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeesEditDialogComponent } from '@feature/components';
-
-const ELEMENT_DATA: Table[] = [
-    {
-        id: 1,
-        name: 'Hydrogen',
-        totalClocked: 1.0079,
-        totalPaid: 1.0079,
-        totalOvertimePaid: 12,
-        email: 'test@test',
-    },
-    {
-        id: 2,
-        name: 'Helium',
-        totalClocked: 4.0026,
-        totalPaid: 1.0079,
-        totalOvertimePaid: 12,
-        email: 'test@test',
-    },
-    {
-        id: 3,
-        name: 'Lithium',
-        totalClocked: 6.941,
-        totalPaid: 1.0079,
-        totalOvertimePaid: 12,
-        email: 'test@test',
-    },
-    {
-        id: 4,
-        name: 'Beryllium',
-        totalClocked: 9.0122,
-        totalPaid: 1.0079,
-        totalOvertimePaid: 12,
-        email: 'test@test',
-    },
-    {
-        id: 5,
-        name: 'Boron',
-        totalClocked: 10.811,
-        totalPaid: 1.0079,
-        totalOvertimePaid: 12,
-        email: 'test@test',
-    },
-    {
-        id: 6,
-        name: 'Carbon',
-        totalClocked: 12.0107,
-        totalPaid: 1.0079,
-        totalOvertimePaid: 12,
-        email: 'test@test',
-    },
-    {
-        id: 7,
-        name: 'Nitrogen',
-        totalClocked: 14.0067,
-        totalPaid: 1.0079,
-        totalOvertimePaid: 12,
-        email: 'test@test',
-    },
-    {
-        id: 8,
-        name: 'Oxygen',
-        totalClocked: 15.9994,
-        totalPaid: 1.0079,
-        totalOvertimePaid: 12,
-        email: 'test@test',
-    },
-    {
-        id: 9,
-        name: 'Fluorine',
-        totalClocked: 18.9984,
-        totalPaid: 1.0079,
-        totalOvertimePaid: 12,
-        email: 'test@test',
-    },
-    {
-        id: 10,
-        name: 'Neon',
-        totalClocked: 20.1797,
-        totalPaid: 1.0079,
-        totalOvertimePaid: 12,
-        email: 'test@test',
-    },
-];
+import { TableServiceService } from '@core/services/table-service.service';
 
 @Component({
     selector: 'app-employees-table',
     templateUrl: './employees-table.component.html',
     styleUrls: ['./employees-table.component.scss'],
 })
-export class EmployeesTableComponent {
+export class EmployeesTableComponent implements OnChanges {
+    @Input() elementData: TableModel[];
+
     displayedColumns: string[] = [
         'select',
         'id',
@@ -103,15 +23,22 @@ export class EmployeesTableComponent {
         'totalPaid',
         'totalOvertimePaid',
     ];
-    dataSource = new MatTableDataSource<Table>(ELEMENT_DATA);
-    selection = new SelectionModel<Table>(true, []);
+    dataSource: MatTableDataSource<TableModel>;
+    selection = new SelectionModel<TableModel>(true, []);
 
-    constructor(public dialog: MatDialog) {}
+    constructor(
+        public _dialog: MatDialog,
+        private _tableService: TableServiceService
+    ) {}
+
+    ngOnChanges() {
+        this.dataSource = new MatTableDataSource<TableModel>(this.elementData);
+    }
 
     /** Whether the number of selected elements matches the total number of rows. */
     isAllSelected() {
         const numSelected = this.selection.selected.length;
-        const numRows = this.dataSource.data.length;
+        const numRows = this.dataSource?.data?.length;
         return numSelected === numRows;
     }
 
@@ -121,12 +48,11 @@ export class EmployeesTableComponent {
             this.selection.clear();
             return;
         }
-
         this.selection.select(...this.dataSource.data);
     }
 
     /** The label for the checkbox on the passed row */
-    checkboxLabel(row?: Table): string {
+    checkboxLabel(row?: TableModel): string {
         if (!row) {
             return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
         }
@@ -136,7 +62,7 @@ export class EmployeesTableComponent {
     }
 
     openDialog() {
-        const dialogRef = this.dialog.open(EmployeesEditDialogComponent, {
+        const dialogRef = this._dialog.open(EmployeesEditDialogComponent, {
             width: '70vw',
             disableClose: true,
         });

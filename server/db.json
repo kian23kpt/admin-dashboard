@@ -1,0 +1,133 @@
+{
+    "employees": [
+        {
+            "id": 1,
+            "name": "Knox Russo",
+            "email": "lacus.ut@pellentesqueeget.co.uk",
+            "totalClocked": 47,
+            "totalPaid": 14225,
+            "totalOvertimePaid": 16098
+        },
+        {
+            "id": 2,
+            "name": "Nina Lawrence",
+            "email": "mattis.cras@consectetueradipiscing.co.uk",
+            "totalClocked": 15,
+            "totalPaid": 3933,
+            "totalOvertimePaid": 16027
+        },
+        {
+            "id": 3,
+            "name": "Jane Peters",
+            "email": "vehicula.et.rutrum@sed.co.uk",
+            "totalClocked": 45,
+            "totalPaid": 14875,
+            "totalOvertimePaid": 14601
+        },
+        {
+            "id": 4,
+            "name": "Kasimir Henderson",
+            "email": "auctor.non.feugiat@ornaretortorat.org",
+            "totalClocked": 26,
+            "totalPaid": 12817,
+            "totalOvertimePaid": 5130
+        },
+        {
+            "id": 5,
+            "name": "Heather Pennington",
+            "email": "quisque.varius@portaelit.com",
+            "totalClocked": 29,
+            "totalPaid": 11698,
+            "totalOvertimePaid": 2544
+        },
+        {
+            "id": 6,
+            "name": "Damian Moore",
+            "email": "pede.nec@maurissagittisplacerat.net",
+            "totalClocked": 37,
+            "totalPaid": 4559,
+            "totalOvertimePaid": 16857
+        },
+        {
+            "id": 7,
+            "name": "Blake Hubbard",
+            "email": "ut@maurissapien.net",
+            "totalClocked": 11,
+            "totalPaid": 2372,
+            "totalOvertimePaid": 4188
+        },
+        {
+            "id": 8,
+            "name": "Vernon Cantrell",
+            "email": "parturient.montes@faucibusleo.org",
+            "totalClocked": 16,
+            "totalPaid": 11745,
+            "totalOvertimePaid": 9752
+        },
+        {
+            "id": 9,
+            "name": "Hop Mcintosh",
+            "email": "orci.consectetuer.euismod@morbiaccumsanlaoreet.net",
+            "totalClocked": 43,
+            "totalPaid": 18768,
+            "totalOvertimePaid": 3375
+        },
+        {
+            "id": 10,
+            "name": "Kellie Vega",
+            "email": "mauris.rhoncus.id@consequatdolorvitae.org",
+            "totalClocked": 16,
+            "totalPaid": 11016,
+            "totalOvertimePaid": 12386
+        }
+    ],
+    "profiles": [
+        {
+            "id": 1,
+            "userId": 1,
+            "job": "Plumber"
+        },
+        {
+            "id": 2,
+            "userId": 2,
+            "job": "developer"
+        },
+        {
+            "id": 3,
+            "userId": 3,
+            "job": "Manager"
+        }
+    ],
+    "products": [
+        {
+            "id": 1,
+            "name": "Spanner",
+            "category": "tools"
+        },
+        {
+            "id": 2,
+            "name": "Hammer",
+            "category": "tools"
+        },
+        {
+            "id": 3,
+            "name": "Screw driver",
+            "category": "tools"
+        },
+        {
+            "id": 4,
+            "name": "Paint brush",
+            "category": "paint"
+        },
+        {
+            "id": 5,
+            "name": "Paint roller",
+            "category": "paint"
+        },
+        {
+            "id": 6,
+            "name": "Paint",
+            "category": "paint"
+        }
+    ]
+}

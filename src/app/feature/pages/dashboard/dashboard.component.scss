@@ -1,12 +1,15 @@
 :host {
-    section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 1440px;
+    margin: 50px auto;
+    
+    header {
         display: flex;
-        flex-wrap: wrap;
+        width: 100%;
         justify-content: space-around;
-        max-width: 1440px;
-        margin: 50px auto;
     }
-
 
     app-employees-table {
         width: 100%;

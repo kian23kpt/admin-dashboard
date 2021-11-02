@@ -1,6 +1,7 @@
-<section>
-    <ng-container *ngFor="let data of generalData">
-        <app-information-card [cardData]="data"></app-information-card>
-    </ng-container>
-    <app-employees-table></app-employees-table>
-</section>
+<header>
+    <app-information-card [cardData]="stats.employee"></app-information-card>
+    <app-information-card [cardData]="stats.time"></app-information-card>
+    <app-information-card [cardData]="stats.paid"></app-information-card>
+    <app-information-card [cardData]="stats.overPaid"></app-information-card>
+</header>
+<app-employees-table [elementData]="tableData"></app-employees-table>

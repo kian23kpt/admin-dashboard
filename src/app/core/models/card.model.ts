@@ -1,5 +1,6 @@
 export interface Card {
     title: string;
-    value: string;
+    totalValue: number;
     icon: string;
+    symbol: string;
 }

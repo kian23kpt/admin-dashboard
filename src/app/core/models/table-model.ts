@@ -1,4 +1,4 @@
-export interface Table {
+export interface TableModel {
     id: number;
     name: string;
     email: string;
