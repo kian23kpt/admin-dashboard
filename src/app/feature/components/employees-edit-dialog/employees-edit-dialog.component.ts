@@ -1,5 +1,12 @@
-import { Component } from '@angular/core';
+import {
+    Component,
+    Inject,
+    OnInit,
+} from '@angular/core';
 import { Shift } from '@core/models/shift.model';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TableModel } from '@core/models';
+import { FormBuilder } from '@angular/forms';
 
 const ELEMENT_DATA: Shift[] = [
     // { employeeId: 1, clockIn: 8, clockOut: 1.0079 },
@@ -19,7 +26,13 @@ const ELEMENT_DATA: Shift[] = [
     templateUrl: './employees-edit-dialog.component.html',
     styleUrls: ['./employees-edit-dialog.component.scss'],
 })
-export class EmployeesEditDialogComponent {
+export class EmployeesEditDialogComponent implements OnInit {
+    private _employeeForm = this.fb.group({
+        name: [''],
+        hourlyRate: [''],
+        overtimeHourlyRate: [''],
+        shifts: [''],
+    });
     displayedColumns: string[] = [
         'employeeId',
         'clockIn',
@@ -27,4 +40,20 @@ export class EmployeesEditDialogComponent {
         'totalTime',
     ];
     dataSource = ELEMENT_DATA;
+
+    get employeeForm() {
+        return this._employeeForm;
+    }
+
+    constructor(
+        private fb: FormBuilder,
+        @Inject(MAT_DIALOG_DATA) public data: TableModel[]
+    ) {}
+
+    ngOnInit() {
+        this.data.forEach((employee) => {
+            this.employeeForm.patchValue(employee);
+        });
+        console.log(this.data);
+    }
 }

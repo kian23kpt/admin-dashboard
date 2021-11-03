@@ -4,81 +4,71 @@
             "id": 1,
             "name": "Knox Russo",
             "email": "lacus.ut@pellentesqueeget.co.uk",
-            "totalClocked": 47,
-            "totalPaid": 14225,
-            "totalOvertimePaid": 16098
+            "hourlyRate": 1.2,
+            "overtimeHourlyRate": 1.5
         },
         {
             "id": 2,
             "name": "Nina Lawrence",
             "email": "mattis.cras@consectetueradipiscing.co.uk",
-            "totalClocked": 15,
-            "totalPaid": 3933,
-            "totalOvertimePaid": 16027
+            "hourlyRate": 1.5,
+            "overtimeHourlyRate": 1.6
         },
         {
             "id": 3,
             "name": "Jane Peters",
             "email": "vehicula.et.rutrum@sed.co.uk",
-            "totalClocked": 45,
-            "totalPaid": 14875,
-            "totalOvertimePaid": 14601
+            "hourlyRate": 1.1,
+            "overtimeHourlyRate": 1.3
         },
         {
             "id": 4,
             "name": "Kasimir Henderson",
             "email": "auctor.non.feugiat@ornaretortorat.org",
-            "totalClocked": 26,
-            "totalPaid": 12817,
-            "totalOvertimePaid": 5130
+            "hourlyRate": 1.9,
+            "overtimeHourlyRate": 1.5
         },
         {
             "id": 5,
             "name": "Heather Pennington",
             "email": "quisque.varius@portaelit.com",
-            "totalClocked": 29,
-            "totalPaid": 11698,
-            "totalOvertimePaid": 2544
+            "hourlyRate": 2,
+            "overtimeHourlyRate": 1.6
         },
         {
             "id": 6,
             "name": "Damian Moore",
             "email": "pede.nec@maurissagittisplacerat.net",
-            "totalClocked": 37,
-            "totalPaid": 4559,
-            "totalOvertimePaid": 16857
+            "hourlyRate": 2,
+            "overtimeHourlyRate": 2.3
         },
         {
             "id": 7,
             "name": "Blake Hubbard",
             "email": "ut@maurissapien.net",
-            "totalClocked": 11,
-            "totalPaid": 2372,
-            "totalOvertimePaid": 4188
+            "hourlyRate": 1.1,
+            "overtimeHourlyRate": 2.3
         },
         {
             "id": 8,
             "name": "Vernon Cantrell",
             "email": "parturient.montes@faucibusleo.org",
-            "totalClocked": 16,
-            "totalPaid": 11745,
-            "totalOvertimePaid": 9752
+            "hourlyRate": 1.6,
+            "overtimeHourlyRate": 1.1
         },
         {
             "id": 9,
             "name": "Hop Mcintosh",
             "email": "orci.consectetuer.euismod@morbiaccumsanlaoreet.net",
-            "totalClocked": 43,
-            "totalPaid": 18768,
-            "totalOvertimePaid": 3375
+            "hourlyRate": 1.9,
+            "overtimeHourlyRate": 1.8
         },
         {
             "id": 10,
             "name": "Kellie Vega",
             "email": "mauris.rhoncus.id@consequatdolorvitae.org",
-            "totalClocked": 16,
-            "totalPaid": 11016,
-            "totalOvertimePaid": 12386
+            "hourlyRate": 1.6,
+            "overtimeHourlyRate": 1.1
         }
     ],
     "shifts": [

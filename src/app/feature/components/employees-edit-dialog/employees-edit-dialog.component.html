@@ -1,19 +1,19 @@
 <mat-dialog-content class="mat-typography">
-    <ng-container *ngFor="let x of [1,2]">
+    <ng-container *ngFor="let x of data">
         <h2 mat-dialog-title>Employee</h2>
 
-        <form>
+        <form [formGroup]="employeeForm">
             <mat-form-field appearance="outline">
                 <mat-label>Employee Name</mat-label>
-                <input matInput>
+                <input matInput formControlName="name">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Employee Hourly Rate</mat-label>
-                <input matInput>
+                <input matInput formControlName="hourlyRate">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Employee Overtime Hourly Rate</mat-label>
-                <input matInput>
+                <input matInput formControlName="overtimeHourlyRate">
             </mat-form-field>
             <div class="shift-container">
                 <b>Shifts</b>

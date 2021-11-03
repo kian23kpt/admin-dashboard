@@ -14,7 +14,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     shifts: Shift[];
     employees: Employee[];
     workTimeInMin: number = 480;
-    perHourPrice: number = 1;
 
     stats = {
         employee: {
@@ -93,8 +92,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 }
             });
             employee.totalClocked = this.minsToStr(sum);
-            employee.totalPaid = sum * this.perHourPrice;
-            employee.totalOvertimePaid = overtime * this.perHourPrice;
+            employee.totalPaid = sum * employee.hourlyRate;
+            employee.totalOvertimePaid = overtime * employee.overtimeHourlyRate;
 
             this.calculateStats(
                 sum,

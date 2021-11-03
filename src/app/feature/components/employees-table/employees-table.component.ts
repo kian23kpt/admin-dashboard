@@ -1,4 +1,8 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import {
+    Component,
+    Input,
+    OnChanges,
+} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { TableModel } from '@core/models';
@@ -61,8 +65,8 @@ export class EmployeesTableComponent implements OnChanges {
         const dialogRef = this._dialog.open(EmployeesEditDialogComponent, {
             width: '70vw',
             disableClose: true,
+            data: this.selection.selected,
         });
-
         dialogRef.afterClosed().subscribe((result) => {
             console.log(`Dialog result: ${result}`);
         });
