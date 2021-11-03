@@ -1,13 +1,10 @@
-import {
-    Component,
-    Input,
-    OnChanges,
-} from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { TableModel } from '@core/models';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeesEditDialogComponent } from '@feature/components';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-employees-table',
@@ -29,7 +26,7 @@ export class EmployeesTableComponent implements OnChanges {
     dataSource: MatTableDataSource<TableModel>;
     selection = new SelectionModel<TableModel>(true, []);
 
-    constructor(public _dialog: MatDialog) {}
+    constructor(public _dialog: MatDialog, private _snackBar: MatSnackBar) {}
 
     ngOnChanges() {
         this.dataSource = new MatTableDataSource<TableModel>(this.elementData);
@@ -62,13 +59,23 @@ export class EmployeesTableComponent implements OnChanges {
     }
 
     openDialog() {
-        const dialogRef = this._dialog.open(EmployeesEditDialogComponent, {
-            width: '70vw',
-            disableClose: true,
-            data: this.selection.selected,
-        });
-        dialogRef.afterClosed().subscribe((result) => {
-            console.log(`Dialog result: ${result}`);
-        });
+        if (!this.selection.isEmpty()) {
+            const dialogRef = this._dialog.open(EmployeesEditDialogComponent, {
+                width: '70vw',
+                disableClose: true,
+                data: this.selection.selected,
+            });
+            dialogRef.afterClosed().subscribe((result) => {
+                console.log(`Dialog result: ${result}`);
+            });
+        } else {
+            this._snackBar.open(
+                'Select at least One Employee for Edit',
+                'Close',
+                {
+                    duration: 3000,
+                }
+            );
+        }
     }
 }

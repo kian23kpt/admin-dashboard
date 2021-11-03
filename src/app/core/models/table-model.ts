@@ -6,7 +6,7 @@ export interface TableModel {
     email: string;
     hourlyRate: number;
     overtimeHourlyRate: number;
-    totalClocked: string;
+    totalClocked: number;
     totalPaid: number;
     totalOvertimePaid: number;
     shifts: Array<Shift>;

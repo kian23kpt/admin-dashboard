@@ -3,6 +3,8 @@ import { TableModel } from '@core/models';
 import { EmployeeService } from '@core/services/employee.service';
 import { Shift } from '@core/models/shift.model';
 import { Employee } from '@core/models/employee.model';
+import { minsToStr } from '@core/util/statics';
+import * as moment from 'moment';
 
 @Component({
     selector: 'app-dashboard',
@@ -50,13 +52,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
 
     getEmployees() {
-        this._employeeService.getTableData().subscribe((employees) => {
-            this.tableData = employees;
-        });
+        this._employeeService
+            .getTableData()
+            .subscribe((employees: TableModel[]) => {
+                this.tableData = employees;
+            });
     }
 
     getShifts() {
-        this._employeeService.getShiftsData().subscribe((res) => {
+        this._employeeService.getShiftsData().subscribe((res: Shift[]) => {
             this.shifts = res;
             this.mergeShiftsToEmployee();
         });
@@ -80,18 +84,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
             let sum = 0;
             let overtime = 0;
 
-            employee.shifts.forEach((time) => {
-                let clockIn = this.strToMins(time.clockIn);
-                let clockOut = this.strToMins(time.clockOut);
-                if (time.clockOut.split(':')[0] === '0' || clockOut > clockIn) {
-                    let result = clockOut - clockIn;
+            employee.shifts.forEach((shift: Shift) => {
+                let clockIn = moment(shift.clockIn);
+                let clockOut = moment(shift.clockOut);
+                if (clockOut > clockIn) {
+                    let result = clockOut.diff(clockIn, 'minute');
+                    shift.workHour = minsToStr(result);
                     sum += result;
                     if (result > this.workTimeInMin) {
                         overtime += result - this.workTimeInMin;
                     }
+                } else {
+                    shift.workHour = 'Wrong Clock Out';
                 }
             });
-            employee.totalClocked = this.minsToStr(sum);
+            employee.totalClocked = sum / 60;
             employee.totalPaid = sum * employee.hourlyRate;
             employee.totalOvertimePaid = overtime * employee.overtimeHourlyRate;
 
@@ -101,18 +108,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 employee.totalOvertimePaid
             );
         });
-    }
-
-    strToMins(time: string) {
-        let s = time.split(':');
-        if (s[0] === '0') {
-            s[0] = '24';
-        }
-        return Number(s[0]) * 60 + Number(s[1]);
-    }
-
-    minsToStr(time: number) {
-        return Math.trunc(time / 60) + ':' + ('00' + (time % 60)).slice(-2);
     }
 
     calculateStats(time: number, paid: number, overPaid: number) {

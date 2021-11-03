@@ -54,7 +54,7 @@
     <!-- Total Time Column -->
     <ng-container matColumnDef="totalClocked">
         <th mat-header-cell *matHeaderCellDef>Total Time</th>
-        <td mat-cell *matCellDef="let element">{{ element.totalClocked }} hr</td>
+        <td mat-cell *matCellDef="let element">{{ element.totalClocked|number:'1.1-1' }} hr</td>
     </ng-container>
 
     <!-- Total Paid Column -->
