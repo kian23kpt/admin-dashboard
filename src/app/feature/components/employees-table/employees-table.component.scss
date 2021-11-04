@@ -4,6 +4,15 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 10px;
+
+        button{
+            padding-left: 10px;
+        
+            mat-icon{
+              font-size: 20px;
+              margin-right: 4px;
+            }
+        }
     }
 
     mat-table {

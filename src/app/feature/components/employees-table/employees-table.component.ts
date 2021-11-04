@@ -88,10 +88,11 @@ export class EmployeesTableComponent implements OnChanges {
                     };
                     this._employeeService
                         .employeeEdit(employee.id, body)
-                        .subscribe();
+                        .subscribe(x=>{
+                            this.selection.clear();
+                            this.updateTable.emit(true);
+                        });
                 });
-                this.selection.clear();
-                this.updateTable.emit(true);
             });
         } else {
             this._snackBar.open(
