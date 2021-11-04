@@ -1,10 +1,17 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    Output,
+} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { TableModel } from '@core/models';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeesEditDialogComponent } from '@feature/components';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { EmployeeService } from '@core/services/employee.service';
 
 @Component({
     selector: 'app-employees-table',
@@ -13,6 +20,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class EmployeesTableComponent implements OnChanges {
     @Input() elementData: TableModel[];
+    @Output() updateTable: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     displayedColumns: string[] = [
         'select',
@@ -26,7 +34,11 @@ export class EmployeesTableComponent implements OnChanges {
     dataSource: MatTableDataSource<TableModel>;
     selection = new SelectionModel<TableModel>(true, []);
 
-    constructor(public _dialog: MatDialog, private _snackBar: MatSnackBar) {}
+    constructor(
+        public _dialog: MatDialog,
+        private _snackBar: MatSnackBar,
+        private _employeeService: EmployeeService
+    ) {}
 
     ngOnChanges() {
         this.dataSource = new MatTableDataSource<TableModel>(this.elementData);
@@ -66,7 +78,18 @@ export class EmployeesTableComponent implements OnChanges {
                 data: this.selection.selected,
             });
             dialogRef.afterClosed().subscribe((result) => {
-                console.log(`Dialog result: ${result}`);
+                result.forEach((employee: TableModel) => {
+                    let body = {
+                        name: employee.name,
+                        hourlyRate: employee.hourlyRate,
+                        overtimeHourlyRate: employee.overtimeHourlyRate,
+                    };
+                    this._employeeService
+                        .employeeEdit(employee.id, body)
+                        .subscribe();
+                });
+                this.selection.clear();
+                this.updateTable.emit(true);
             });
         } else {
             this._snackBar.open(

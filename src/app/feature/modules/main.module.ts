@@ -8,7 +8,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import {
-    EmployeeEditFormComponent,
     EmployeesEditDialogComponent,
     EmployeesTableComponent,
     InformationCardComponent,
@@ -33,7 +32,6 @@ const routes: Routes = [
         EmployeesTableComponent,
         InformationCardComponent,
         EmployeesEditDialogComponent,
-        EmployeeEditFormComponent,
     ],
     imports: [
         CommonModule,

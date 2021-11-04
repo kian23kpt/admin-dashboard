@@ -5,6 +5,7 @@ import { Shift } from '@core/models/shift.model';
 import { Employee } from '@core/models/employee.model';
 import { minsToStr } from '@core/util/statics';
 import * as moment from 'moment';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-dashboard',
@@ -13,9 +14,9 @@ import * as moment from 'moment';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
     tableData: TableModel[];
-    shifts: Shift[];
     employees: Employee[];
     workTimeInMin: number = 480;
+    private _subscription: Subscription;
 
     stats = {
         employee: {
@@ -48,35 +49,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.getEmployees();
-        this.getShifts();
     }
 
     getEmployees() {
-        this._employeeService
+        this._subscription = this._employeeService
             .getTableData()
             .subscribe((employees: TableModel[]) => {
                 this.tableData = employees;
+                this.calculateWorkingHour();
             });
-    }
-
-    getShifts() {
-        this._employeeService.getShiftsData().subscribe((res: Shift[]) => {
-            this.shifts = res;
-            this.mergeShiftsToEmployee();
-        });
-    }
-
-    mergeShiftsToEmployee() {
-        this.tableData.map((employee) => {
-            const shifts: Array<Shift> = [];
-            this.shifts.find((shift) => {
-                if (shift.employeeId === employee.id) {
-                    shifts.push(shift);
-                }
-            });
-            employee.shifts = shifts;
-        });
-        this.calculateWorkingHour();
     }
 
     calculateWorkingHour() {
@@ -87,6 +68,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
             employee.shifts.forEach((shift: Shift) => {
                 let clockIn = moment(shift.clockIn);
                 let clockOut = moment(shift.clockOut);
+                shift.clockIn = clockIn.format('ddd, hh:mm a');
+                shift.clockOut = clockOut.format('ddd, hh:mm a');
+
                 if (clockOut > clockIn) {
                     let result = clockOut.diff(clockIn, 'minute');
                     shift.workHour = minsToStr(result);
@@ -117,7 +101,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.stats.overPaid.totalValue += overPaid;
     }
 
+    updateTable() {
+        this.stats.time.totalValue = 0;
+        this.stats.paid.totalValue = 0;
+        this.stats.overPaid.totalValue = 0;
+        this.getEmployees();
+    }
+
     ngOnDestroy(): void {
-        console.log('x');
+        this._subscription.unsubscribe();
     }
 }

@@ -6,19 +6,15 @@
         margin-bottom: 10px;
     }
 
-    table {
+    mat-table {
         width: 100%;
 
-        .mat-cell, .mat-header-cell {
-            //text-align: center;
-        }
-
         .mat-column-email {
-            //width: 200px;
+            flex: 2;
         }
 
-        .mat-column-totalOvertimePaid {
-            //width: 170px;
+        .mat-column-id, .mat-column-select {
+            flex: .4;
         }
     }
 }

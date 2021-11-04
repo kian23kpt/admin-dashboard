@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { TableModel } from '@core/models';
 import { delay } from 'rxjs/operators';
 import { AbstractRESTService } from '@core/templates/ddx-rest.template';
-import { Shift } from '@core/models/shift.model';
 
 @Injectable({
     providedIn: 'root',
@@ -20,7 +19,7 @@ export class EmployeeService extends AbstractRESTService {
         >;
     }
 
-    getShiftsData(): Observable<Shift[]> {
-        return this.httpGET('shifts').pipe(delay(400)) as Observable<Shift[]>;
+    employeeEdit(id: number, body: object) {
+        return this.httpPATCH(`employees/${id}`, body);
     }
 }
