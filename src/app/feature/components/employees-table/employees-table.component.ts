@@ -1,4 +1,5 @@
 import {
+    ChangeDetectionStrategy,
     Component,
     EventEmitter,
     Input,
@@ -17,6 +18,7 @@ import { EmployeeService } from '@core/services/employee.service';
     selector: 'app-employees-table',
     templateUrl: './employees-table.component.html',
     styleUrls: ['./employees-table.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeesTableComponent implements OnChanges {
     @Input() elementData: TableModel[];
